@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>POO en JavaScript</title>
+</head>
+<body>
+	<h1>POO en Java Script</h1>
+	
+
+	<script src="producto.class.js"></script>
+	<script>
+		let unProducto = new Producto("Café torrado", 340, 100, true) /*new Class -> hace referencia a una clase definida. Instanciando un objeto "Producto"*/ 
+		let otroProducto = new Producto("Jugo de naranja", 250, 55.85, false)
+		let tercerProducto = new Producto("Té",185, 199.99)
+		//Otra manera de crear un objeto.
+		/*let objetoGenerico = {
+			nombre: "Agua sin gas",
+			stock: 300,
+			precio: 22.40,
+			disponible: true
+		}*/ 
+
+		unProducto.Mostrar() //<- Invoco al metodo a traves de la "instancia" del objeto Producto.
+		otroProducto.Mostrar()
+
+
+		otroProducto.aplicarDescuento(22)//<- Queremos aplicar un dcto. del 15%
+
+
+		console.log(unProducto)
+		console.log(otroProducto)
+		console.log(tercerProducto)
+		////////////////////////////
+		// Aca programo cosas POWER CON AJAX
+		
+		const miniChrome = new XMLHttpRequest()  //<-- Objeto (constante + expresión new)
+		miniChrome.open("GET", "https://api.myjson.com/bins/1giaf3") //<-- Metodo de instancia (GET || POST)
+		
+		//↓Evento:
+		miniChrome.onload = function(){
+			//↓Respuesta exitosa!:
+			if( this.status == 200 ){
+				console.log(this.response)
+				//let = productos = JSON.parse(this.response)  //JSON A OBJECT
+				let productos = Producto.parse(this.response)
+				productos.forEach(producto=> {
+					producto.Mostrar()
+				})
+			}
+
+		}
+		miniChrome.onerror = function(){
+
+		}
+		
+		miniChrome.send() //<-- Metodo de instancia
+
+
+
+		
+	</script>
+</body>
+</html>

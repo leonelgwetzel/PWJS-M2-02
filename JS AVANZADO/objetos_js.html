@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Objetos en JavaScript</title>
+</head>
+<body>
+	<h1>Objetos en JavaScript</h1>
+
+
+	<script>
+
+		const crearProducto = function(nombre, stock, precio, disponible){ //<-- function crearProducto(argumentos){...}
+
+			//Propiedades
+			let elProducto = new Object()
+			elProducto.nombre = nombre
+			elProducto.stock = stock
+			elProducto.precio = precio
+			elProducto.dispponible = disponible
+
+			//Metodos
+			elProducto.Mostrar = function(){ //<-- Closure (funcion creada dentro de una funcion)
+				window.document.write(`<p>Hay <strong>${elProducto.stock}</strong> unid. de "${elProducto.nombre}" que valen ARG ${elProducto.precio} c/u</p>`)
+			}
+			return elProducto
+		}
+
+		/////////////////////////////////////////////////////////////////////////////
+		//Datos en variables sueltas.
+		let nombre = "café"
+		let stock = 500
+		let precio = 68.55
+		let disponible = true
+
+		//Datos en una colección Array.
+		let producto = ["jugo", 520, 15.65, false]
+
+		//Datos en un objeto (literal)
+		let otroProducto = {
+			nombre: "Agua finamente gasificada",
+			stock: 750,
+			precio: 75.45,
+			disponibilidad: true
+		}
+
+
+		//Datos en un objeto (diferido)
+		let tercerProducto = new  Object()
+
+		tercerProducto.nombre = "Te de Hierbas Orientales"
+		tercerProducto.stock = 150
+		tercerProducto.precio = 135.68
+		tercerProducto.disponibilidad = false
+
+		let cuartoProducto = crearProducto("Malbec", 450, 250.80, true)
+		let ultimoProducto = crearProducto("Chocolate", 2000, 45 , true)
+
+		cuartoProducto.Mostrar()
+
+		//Imprimir producto
+		//EMASCRIPT 5
+		//window.document.write("Hay " + tercerProducto.stock + " unidades de " + tercerProducto.nombre + " que valen ARG " + tercerProducto.precio +" c/u " )
+
+		//EMASCRIPT 6
+		//window.document.write(`Hay ${ultimoProducto.stock} unid. de "${ultimoProducto.nombre}" que valen ARG ${ultimoProducto.precio} c/u`)
+
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES5 vs ES6</title>
+</head>
+<body>
+	<h1>EMAScript 5 vs EMAScript 6</h1>
+
+
+
+	<script>
+	/* 1) Variables */
+	//EMASCRIPT5 -> tipo de dato /String - Float -  integer - boolean
+	//var dato = "Hola mundo desde una variable"
+
+
+	//EMASCRIPT6 
+	let dato = "hola desde una verdadera variable"
+	const datoFijo = "Hola mundo desde una constante"
+	console.log(datoFijo)
+	console.log(dato)
+
+	/*2) Funciones (Parte 1) */	
+
+	//ES5 --> todas las funciones en realidad son variables. en el ejemplo de abajo es lo mismo colocar window.saludar en vez de var saludar
+	//Se utiliza siempre al elemento window y se lo sobrecarga
+	/*
+		var saludar = function(saludo){
+			console.log( saludo )
+		}
+
+		function saludar(saludo){  //<- Funcion Nominada (tiene nombre)
+			console.log(saludo)
+		}
+	*/
+
+	//ES6 -> Trabaja sobre verdaderas variables y no sobrecarga el elemento window. (Si la funcion no va a cambiar, definir la variable como constante)
+	
+		const saludar = function(saludo){
+			console.log( saludo );
+		}
+
+
+	/* 3) Funciones (parte 2) */
+	/*ES5
+		var despedirse = function(adios){
+			alert(adios)
+		}
+	*/
+	//ES6 --> Elimina la necesidad de la palabra function, siempre y en cuanto no sea una funcion dedicada a objetos
+		const despedirse = (adios) => {  //<-- Arrow function =>
+			window.document.write(adios)
+		}
+
+</script>
+</body>
+</html>
