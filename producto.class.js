@@ -69,15 +69,8 @@
 			console.log(datos)
 
 			if(datos instanceof Array){
-				//2) Recorrer el Array de Object para instanciar los objetos Producto
-				let productos =  datos.map( item => {
-					//3) Instanciar objetos Producto cn los datos de cada Object
-					let producto = new Producto(item.Nombre, item.Stock, item.Precio, item.Imagen)
-					return producto
-				})
-				//5) Retornar el Array nuevo una vez que se hayan instanciado todos los objetos Producto
-				return productos
-
+				//1) Recorrer el Array de Object para instanciar los objetos Producto
+				return datos.map( item => new Producto(item.Nombre, item.Stock, item.Precio, item.Imagen) )
 			}else if(datos instanceof Object){
 				return new Producto(datos.Nombre, datos.Stock, datos.Precio, datos.Imagen)
 			}else {
