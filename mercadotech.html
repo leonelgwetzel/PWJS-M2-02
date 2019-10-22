@@ -30,7 +30,7 @@
 		<!-- AREA PRODUCTOS DESTACADOS -->
 		<section id="productos-destacados" class="row">
 			<!-- Inicio Producto #1 -->
-			<article class="col-lg-4 col-md-6 mb-4 producto">
+			<article class="col-lg-4 col-md-6 mb-4 d-none producto">
 				<div class="card h-100">
 					<a href="#">
 						<img class="card-img-top" src="http://placehold.it/700x400" alt="">
@@ -39,7 +39,7 @@
 						<h4 class="card-title">
 							<a href="#">Producto X</a>
 						</h4>
-						<h5>$999.99</h5>
+						<h5 class="btn btn-warning">$999.99</h5>
 						<p class="card-text">No deje pasar esta oportunidad... COMPRE YA!</p>
 					</div>
 				</div>
@@ -72,11 +72,13 @@
 				let productos = Producto.parse(this.response)
 
 				productos.forEach(producto => {
-					console.log(producto)
-					//producto.Mostrar()
+					//console.log(producto)
+					producto.Mostrar()
 				})
 			}
 		}
+
+		miniChrome.send()
 	</script>
 </body>
 </html>

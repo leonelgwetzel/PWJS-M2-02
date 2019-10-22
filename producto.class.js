@@ -12,7 +12,7 @@
 
 		//Propiedades L/E (Lectura y escritura o getters y setters)
 		get Precio(){ //Mantiene la variable original intacta
-			return "US$D"+(this.precio * 1.21).toFixed(2) //<- toFixed(x) cantidad de decimlaes a mostrar
+			return "US$D "+(this.precio * 1.21).toFixed(2) //<- toFixed(x) cantidad de decimlaes a mostrar
 		}
 
 		set Precio(value){
@@ -42,17 +42,12 @@
 
 		//Metodos de Instancia -> Primero hay que instanciar un Producto (El .this en "producto.class.js indica que es el objeto que invoco el Mostrar()")
 		Mostrar(){
-			if(this.disponible ){ // o if(!this.disponible) <-- el !niega lo anterior.
-				let color = "green"
-			} else {
-				let color = "red"
-			}
-
-			//Operador ternario
-			let color = this.disponible ? "green" : "red"
-
-
-			document.write(`<p style="color:${color}">Hay <strong>${this.stock}</strong> unid. de ${this.nombre} que valen <em>ARG ${this.precio}</em> c/u<p>`)
+			let ficha =	document.querySelector(".producto").cloneNode(true)
+			ficha.querySelector(".card-title a").innerText = this.nombre
+			ficha.querySelector(".card-body h5").innerText = this.Precio
+			ficha.querySelector(".card-img-top").src = this.imagen
+			ficha.classList.remove("d-none")
+			document.querySelector("#productos-destacados").appendChild(ficha)
 		}
 
 		aplicarDescuento(valor){
