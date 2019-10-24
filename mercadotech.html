@@ -58,16 +58,56 @@
 	<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="producto.class.js"></script>
 	<script type="text/javascript">
-			/*
-			let unaSimplePrueba = new Producto("Prueba", 400, 12.45, false)
-			console.log(unaSimplePrueba)
-			*/
 
-		const miniChrome = new XMLHttpRequest()  //<-- Objeto (constante + expresión new)
+		/*Persistencia en JavaScript con la API Storage*/
+		//window.localStorage && window.sessionStorage //
+		
+		//window.localStorage.setItem("USUARIOS", "También voy a guardar los datos de los usuarios :O")
+		//alert (window.localStorage.getItem("PRODUCTOS"))
+		//window.localStorage.removeItem("USUARIOS")
+		//window.localStorage.clear()
+
+
+		// YO, JS PROMETO CONVERTIR Y MOSTRAR PRODUCTOS CUANDO TENGA DATOS//
+
+		const promesa = new Promise(function(ok, error){
+
+			window.setTimeout(function(){
+				let numerito = Math.random()
+				if ( numerito < 0.5){
+					ok(`${numerito} es menor que 0.5`)
+				} else {
+					error(`Noooooo ${numerito} es un rebelde`)
+				}
+			},2000)
+		})
+
+			promesa.then(function(rta){
+				alert( `${rta} (si lees esto es xq estas dentro del metodo 'then()'`)
+		}) //<-- Esto ocurre cuando "Sale bien"
+
+			promesa.catch(function(rta){
+				alert(`${rta}, si lees esto es porque estas dentro del metodo 'catch()'`)
+		})//<-- Esto ocurre cuando "Sale mal"
+
+
+		promesa.finally(function(){
+			alert("holaaaa")
+		})
+
+		/////////////////////////////////////////////////////////////////////////////////////////////
+
+		if ( !window.localStorage.getItem("PRODUCTOS")){
+
+			//Si NO existe el LS... Traer los datos desd ela API
+
+			const miniChrome = new XMLHttpRequest()
 		miniChrome.open("GET", "https://api.myjson.com/bins/dcg2p") //<-- Metodo de instancia (GET || POST)
 		miniChrome.onload = function(){
 
 			if( this.status == 200 ){
+				//Guardar los datos de la peticion
+				window.localStorage.setItem("PRODUCTOS", this.response)
 
 				let productos = Producto.parse(this.response)
 
@@ -79,6 +119,15 @@
 		}
 
 		miniChrome.send()
-	</script>
+	} else {
+		//Sino... Efectivamente xiste un LS, entonces usarlo para crear/ mostrar objetos Producto
+		let productos = Producto.parse(window.localStorage.getItem("PRODUCTOS"))
+		productos.forEach(producto => {
+					//console.log(producto)
+					producto.Mostrar()
+				})
+
+	}
+</script>
 </body>
 </html>
