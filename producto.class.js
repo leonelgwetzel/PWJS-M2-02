@@ -59,7 +59,10 @@
 		//Metodos de Clase ó Metodos estatáticos.
 		static parse(json){ //
 			//Acá hay que hacer magia para que se conviertan en objetos 'Producto'
-			let datos = JSON.parse(json)//<- De JSON a Object
+			//let datos = json//<- De JSON a Object
+
+			let datos = (typeof json == "string") ? JSON.parse(json) : json
+
 			console.log("Estos son los datos:")
 			console.log(datos)
 
