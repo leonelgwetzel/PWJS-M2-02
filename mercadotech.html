@@ -29,22 +29,6 @@
 
 		<!-- AREA PRODUCTOS DESTACADOS -->
 		<section id="productos-destacados" class="row">
-			<!-- Inicio Producto #1 -->
-			<article class="col-lg-4 col-md-6 mb-4 d-none producto">
-				<div class="card h-100">
-					<a href="#">
-						<img class="card-img-top" src="http://placehold.it/700x400" alt="">
-					</a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Producto X</a>
-						</h4>
-						<h5 class="btn btn-warning">$999.99</h5>
-						<p class="card-text">No deje pasar esta oportunidad... COMPRE YA!</p>
-					</div>
-				</div>
-			</article>
-			<!-- Fin de Producto #1 -->
 
 		</section>
 	</main>
@@ -56,28 +40,39 @@
 
 	<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/jquery/jquery.min.js"></script>
 	<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://apis.google.com/js/api:client.js"></script>
 	<script src="producto.class.js"></script>
 	<script type="text/javascript">
+/////LOGIN CON GOOGLE/////////
 
+gapi.load("auth2", function(){
+	window.auth = gapi.auth2.init({
+		client_id: "462027519135-78kcpqvq5pvotl6rsa10rude4uh5qs65.apps.googleusercontent.com",
+		cookiepolicy: "single_host_origin"
+	})
+})
+
+
+/////LOGIN CON GOOGLE/////////
 
 /* Ajax Moderno con el metodo fetch() */
 const crearCatalogo = function(items){
 	let productos = Producto.parse(items)
-	productos.forEach( producto => { producto.Mostrar() })
+	productos.forEach( producto => { producto.Mostrar("#productos-destacados") })
 }
 
 if(!window.localStorage.getItem("PRODUCTOS") ){
 	//Si no existen... obtener datos de la API
 	fetch( "https://api.myjson.com/bins/dcg2p")
-.then(rta => rta.json() )
-.then(items => {
-	window.localStorage.setItem("PRODUCTOS", JSON.stringify(items) )	
+	.then(rta => rta.json() )
+	.then(items => {
+		window.localStorage.setItem("PRODUCTOS", JSON.stringify(items) )	
 	crearCatalogo(items) //<--Acá los paso como object
 })
 
 }else {
 //Obtenerlos del local storage.
-	crearCatalogo(window.localStorage.getItem("PRODUCTOS") )
+crearCatalogo(window.localStorage.getItem("PRODUCTOS") )
 }
 
 
