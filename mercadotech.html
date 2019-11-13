@@ -91,8 +91,6 @@ document.querySelector("#login").onclick = function(e){
 
 
 document.querySelector("#logout").onclick = function(e){
-	e.preventDefault()
-
 	//1)Cerrar sesión:
 	auth.signOut()
 	//2)Borrar los datos del usuario:
